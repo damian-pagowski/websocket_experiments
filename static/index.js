@@ -4,22 +4,19 @@ document.addEventListener("DOMContentLoaded", () => {
     location.protocol + "//" + document.domain + ":" + location.port
   );
 
-  // When connected, configure buttons
+  // on connect
   socket.on("connect", () => {
-    // Each button should emit a "submit vote" event
-    document.querySelectorAll("button").forEach((button) => {
-      button.onclick = () => {
-        const selection = button.dataset.vote;
-        socket.emit("submit_vote", { selection: selection });
-      };
-    });
+    const button = document.querySelector("#send");
+    button.onclick = () => {
+      const message = document.querySelector("#message").value;
+      const username = document.querySelector("#username").value;
+      username.value="" 
+      socket.emit("submit_message", { message, username });
+    };
   });
 
-  // When a new vote is announced, add to the unordered list
-  socket.on('vote totals', data => {
-    document.querySelector('#yes').innerHTML = data.yes;
-    document.querySelector('#no').innerHTML = data.no;
-    document.querySelector('#maybe').innerHTML = data.maybe;
-
+  // a new message is received
+  socket.on("new_message", (data) => {
+    document.getElementById("history").value = data;
   });
 });
