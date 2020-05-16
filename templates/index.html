@@ -68,40 +68,57 @@
         </div>
       </div>
     </div>
-    <!-- rest -->
+    <!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">Damian's Chat</a>
+
       <div class="float-right w-100"></div>
-      <button id="user" class="btn btn-outline-success my-2 my-sm-0" type="submit">
-         <i class="fa fa-user"></i>
+      <button
+        id="user"
+        class="btn btn-outline-success my-2 my-sm-0"
+        type="submit"
+      >
+        <i class="fa fa-user"></i>
       </button>
-      
     </nav>
+    <!-- main -->
     <div class="container mt-5">
-      <form>
-        <div class="form-group">
-          <label for="history">Damian's Chat</label>
-          <textarea class="form-control" id="history" rows="15"></textarea>
+      <div class="row">
+        <div class="col-8">
+          <form>
+            <div class="form-group">
+              <textarea class="form-control" id="history" rows="15"></textarea>
+            </div>
+            <div class="input-group mb-3">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Your Message..."
+                id="message"
+              />
+              <div class="input-group-append">
+                <button
+                  class="btn btn-outline-secondary"
+                  type="button"
+                  id="send"
+                  disabled
+                >
+                  Send
+                </button>
+              </div>
+            </div>
+          </form>
         </div>
-        <div class="input-group mb-3">
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Your Message..."
-            id="message"
-          />
-          <div class="input-group-append">
-            <button
-              class="btn btn-outline-secondary"
-              type="button"
-              id="send"
-              disabled
-            >
-              Send
-            </button>
-          </div>
+        <div class="col-4">
+          <form >
+            <div class="form-group">
+              <textarea class="form-control" id="history" rows="15" readonly></textarea>
+            </div>
+          </form>
         </div>
-      </form>
+      </div>
     </div>
+
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
       integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
