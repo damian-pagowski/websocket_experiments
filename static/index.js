@@ -64,7 +64,11 @@ document.addEventListener("DOMContentLoaded", () => {
   // a new message is received
   socket.on("new_message", (data) => {
     const history = document.getElementById("history");
-    history.value = data;
+    const users = document.getElementById("users");
+    console.log(JSON.stringify(data))
+    users.value = data.users.filter(el => el).join("\n");
+    history.value = data.history;
     history.scrollTop = history.scrollHeight - history.clientHeight;
   });
+  socket.emit("submit_message", { username : localStorage.getItem("username") });
 });

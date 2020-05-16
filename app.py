@@ -9,7 +9,7 @@ app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
 socketio = SocketIO(app)
 
 history = "[modek]: hejka!"
-
+users = []
 
 @app.route("/")
 def index():
@@ -18,10 +18,16 @@ def index():
 @socketio.on("submit_message")
 def vote(data):
     global history
+    global users
     username = data['username']
+    users.append(username)
     message = data['message']
-    history = history + "\n[%s]: %s" % (username, message)
-    emit("new_message", history, broadcast=True)
+    if (message != None):
+        history = history + "\n[%s]: %s" % (username, message)
+    chat = {}
+    chat['history'] = history
+    chat['users'] = list(set(users))
+    emit("new_message", chat, broadcast=True)
 
 
 app.run(host='0.0.0.0', port=8080, debug=True)
